@@ -30,10 +30,12 @@ namespace CommanderGQL
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
                 .AddMutationType<Mutation>()
+                .AddSubscriptionType<Subscription>()
                 .AddType<PlatformType>()
                 .AddType<CommandType>()
                 .AddFiltering()
-                .AddSorting();
+                .AddSorting()
+                .AddInMemorySubscriptions();
 
         }
 
@@ -44,6 +46,8 @@ namespace CommanderGQL
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseWebSockets();
 
             app.UseRouting();
 
