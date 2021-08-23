@@ -1,4 +1,5 @@
 using CommanderGQL.Data;
+using CommanderGQL.GraphQL;
 using CommanderGQL.GraphQL.Commands;
 using CommanderGQL.GraphQL.Platforms;
 using CommanderGQL.GraphQL1;
@@ -28,6 +29,7 @@ namespace CommanderGQL
             services.AddPooledDbContextFactory<AppDbContext>(opt => opt.UseSqlServer(_configuration.GetConnectionString("CommandConStr")));
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
+                .AddMutationType<Mutation>()
                 .AddType<PlatformType>()
                 .AddType<CommandType>()
                 .AddFiltering()
