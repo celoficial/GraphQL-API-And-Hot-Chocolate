@@ -25,7 +25,8 @@ namespace CommanderGQL
         {
             services.AddPooledDbContextFactory<AppDbContext>(opt => opt.UseSqlServer(_configuration.GetConnectionString("CommandConStr")));
             services.AddGraphQLServer()
-                .AddQueryType<Query>();
+                .AddQueryType<Query>()
+                .AddProjections();
 
         }
 
@@ -47,7 +48,7 @@ namespace CommanderGQL
             app.UseGraphQLVoyager(new VoyagerOptions() 
             { 
                 GraphQLEndPoint = "/graphql"
-            },"/ui/voyager");
+            },"/graphql-voyager");
         }
     }
 }
