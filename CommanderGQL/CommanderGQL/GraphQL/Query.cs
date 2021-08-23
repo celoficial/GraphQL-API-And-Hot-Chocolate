@@ -9,10 +9,16 @@ namespace CommanderGQL.GraphQL1
     public class Query
     {
         [UseDbContext(typeof(AppDbContext))]
-        [UseProjection]
+        //[UseProjection]
         public IQueryable<Platform> GetPlatform([ScopedService] AppDbContext context)
         {
             return context.Platforms;
+        }
+
+        [UseDbContext(typeof(AppDbContext))]
+        public IQueryable<Command> GetCommand([ScopedService] AppDbContext context)
+        {
+            return context.Commands;
         }
     }
 }

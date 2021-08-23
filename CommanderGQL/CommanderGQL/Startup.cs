@@ -1,4 +1,6 @@
 using CommanderGQL.Data;
+using CommanderGQL.GraphQL.Commands;
+using CommanderGQL.GraphQL.Platforms;
 using CommanderGQL.GraphQL1;
 using GraphQL.Server.Ui.Voyager;
 using Microsoft.AspNetCore.Builder;
@@ -26,7 +28,8 @@ namespace CommanderGQL
             services.AddPooledDbContextFactory<AppDbContext>(opt => opt.UseSqlServer(_configuration.GetConnectionString("CommandConStr")));
             services.AddGraphQLServer()
                 .AddQueryType<Query>()
-                .AddProjections();
+                .AddType<PlatformType>()
+                .AddType<CommandType>();
 
         }
 
